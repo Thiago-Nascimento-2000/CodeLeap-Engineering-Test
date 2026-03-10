@@ -12,7 +12,7 @@ export const Wrapper = ({ children }: WrapperProps) => {
 type ContainerProps = { children: React.ReactNode }
 export const Container = ({children}: ContainerProps) => {
     return (
-        <div className="w-[660px] h-[146px] p-5 bg-white rounded-[16px] absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] shadow-lg">
+        <div className="w-[660px] h-[146px] flex flex-col justify-between p-5 bg-white rounded-[16px] absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] shadow-lg">
             {children}
         </div>
     )
@@ -28,16 +28,23 @@ export const Title = ({ text }: TitleProps) => {
 type ContainerButtonProps = { children: React.ReactNode }
 export const ContainerButton = ({ children }: ContainerButtonProps) => {
     return (
-        <div className='w-full flex justify-end mt-5 gap-3'>
+        <div className='w-full flex justify-end gap-3'>
             {children}
         </div>
     )
 }
 
-type ButtonProps = { text: string, onClick: () => void }
-export const Button = ({ text, onClick }: ButtonProps) => {
+const ColorsTypes: Record<string, string> = {
+    delete: 'bg-red-500 hover:bg-red-600',
+    cancel: 'bg-gray-500 hover:bg-gray-600'
+}
+
+type ButtonProps = { text: string, type?: string, onClick: () => void }
+export const Button = ({ text, type = "cancel", onClick }: ButtonProps) => {
+    const typeButton = ColorsTypes[type] || ColorsTypes.gray
+
     return (
-        <button onClick={onClick} className="bg-red-500 rounded-[8px] w-[120px] h-[32px] text-white font-semibold hover:bg-red-600 transition-colors hover:cursor-pointer">
+        <button onClick={onClick} className={`rounded-[8px] w-[120px] h-[32px] text-white font-semibold hover:transition-colors hover:cursor-pointer ${typeButton}`}>
             {text}
         </button>
     )

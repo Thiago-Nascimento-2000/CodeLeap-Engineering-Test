@@ -29,8 +29,6 @@ function App() {
         </form>
 
         <CardPost/>
-
-        <ModalDelete/>
       </main>
     </>
   )
