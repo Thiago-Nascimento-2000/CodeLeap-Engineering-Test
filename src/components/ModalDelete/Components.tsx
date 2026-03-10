@@ -27,8 +27,8 @@ export const ContainerButton = ({ children }: ContainerButtonProps) => {
 };
 
 const ColorsTypes: Record<string, string> = {
-  delete: "bg-red-500 hover:bg-red-600",
-  cancel: "bg-gray-500 hover:bg-gray-600",
+  delete: "bg-red-500 hover:bg-red-600 transaction-all duration-300",
+  cancel: "bg-gray-500 hover:bg-gray-600 transaction-all duration-300",
 };
 
 type ButtonProps = { text: string; type?: string; onClick: () => void };

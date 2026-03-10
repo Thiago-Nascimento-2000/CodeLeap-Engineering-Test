@@ -66,8 +66,9 @@ export const inputContent = ({ placeholder }: TextAreaProps) => {
 };
 
 const ColorsTypes: Record<string, string> = {
-  save: "bg-green-500 hover:bg-green-600",
-  cancel: "text-black border-1 border-black",
+  save: "bg-green-500 hover:bg-green-600 text-white transaction-all duration-300",
+  cancel:
+    "text-black border-1 border-black hover:bg-red-500 hover:text-white hover:border-none transaction-all duration-300",
 };
 
 type ButtonProps = {
@@ -81,7 +82,7 @@ export const Button = ({ text, type = "cancel", onClick }: ButtonProps) => {
   return (
     <button
       onClick={onClick}
-      className={`rounded-[8px] w-[120px] h-[32px] text-white font-semibold hover:transition-colors hover:cursor-pointer ${typeButton}`}
+      className={`rounded-[8px] w-[120px] h-[32px] font-semibold hover:transition-colors hover:cursor-pointer ${typeButton}`}
     >
       {text}
     </button>
