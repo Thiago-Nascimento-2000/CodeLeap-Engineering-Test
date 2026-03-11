@@ -6,6 +6,7 @@ import ModalEdit from "../ModalEdit/ModalEdit";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../Redux/store";
 import { openModalEditPost } from "../../Redux/Slices/modalEditPost";
+import formatData from "../../util/formatdata";
 
 type Post = {
   id: number;
@@ -73,7 +74,7 @@ const CardPost = () => {
           <Main
             username={post.username}
             content={post.content}
-            created_datetime={post.created_datetime}
+            created_datetime={formatData(post.created_datetime)}
           />
         </Card.Container>
       ))}
