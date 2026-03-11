@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import signupUsernameReducer from "./Slices/signupUsername";
+import modalEditPostReducer from "./Slices/modalEditPost";
 
 export const store = configureStore({
     reducer: {
-        counter: signupUsernameReducer,
+        signupUsername: signupUsernameReducer,
+        modalEditPost: modalEditPostReducer,
     },
 });
 

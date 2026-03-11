@@ -36,30 +36,43 @@ export const ContainerInput = ({ children }: ContainerInputProps) => {
 type LabelProps = { text: string };
 export const Label = ({ text }: LabelProps) => {
   return (
-    <label
-      htmlFor="Title"
-      className="text-black flex mb-2 font-[16px] font-weight-[400]"
-    >
+    <label className="text-black flex mb-2 font-[16px] font-weight-[400]">
       {text}
     </label>
   );
 };
 
-type InputProps = { placeholder: string };
-export const inputTitle = ({ placeholder }: InputProps) => {
+type InputProps = {
+  placeholder: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+export const inputTitle = ({ placeholder, value, onChange }: InputProps) => {
   return (
     <input
       placeholder={placeholder}
+      value={value}
+      onChange={onChange}
       className="w-full h-[32px] text-black px-2 rounded-[8px] border-1 border-[#77777777]"
     ></input>
   );
 };
 
-type TextAreaProps = { placeholder: string };
-export const inputContent = ({ placeholder }: TextAreaProps) => {
+type TextAreaProps = {
+  placeholder: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+};
+export const inputContent = ({
+  placeholder,
+  value,
+  onChange,
+}: TextAreaProps) => {
   return (
     <textarea
       placeholder={placeholder}
+      value={value}
+      onChange={onChange}
       className="w-full h-[100px] text-black px-2 rounded-[8px] border-1 border-[#77777777] p-2"
     ></textarea>
   );

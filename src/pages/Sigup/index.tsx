@@ -6,7 +6,9 @@ import { useNavigate } from "react-router-dom";
 const Sigup = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const userName = useSelector((state: RootState) => state.counter.userName);
+  const userName = useSelector(
+    (state: RootState) => state.signupUsername.userName,
+  );
 
   const handleUserNameStateInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setUserName(e.target.value));
