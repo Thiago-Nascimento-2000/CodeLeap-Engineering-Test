@@ -10,7 +10,7 @@ export const Wrapper = ({ children }: WrapperProps) => {
 type ContainerProps = { children: React.ReactNode };
 export const Container = ({ children }: ContainerProps) => {
   return (
-    <div className="w-[660px] h-fit gap-5 flex flex-col justify-between p-5 bg-white rounded-[16px] absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] shadow-lg">
+    <div className="w-full sm:w-[660px] h-fit gap-5 flex flex-col justify-between p-5 bg-white rounded-[16px] absolute top-[50%] left-[50%] transform -translate-x-[50%] -translate-y-[50%] shadow-lg">
       {children}
     </div>
   );

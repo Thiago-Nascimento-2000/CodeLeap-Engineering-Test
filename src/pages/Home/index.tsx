@@ -10,12 +10,14 @@ const Home = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  const username = useSelector((state: RootState) => state.signupUsername.userName);
+  const username = useSelector(
+    (state: RootState) => state.signupUsername.userName,
+  );
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const params = new URLSearchParams(window.location.search);
-    const userlogged = params.get("username");
+  const params = new URLSearchParams(window.location.search);
+  const userlogged = params.get("username");
 
   const handleTitleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -27,7 +29,7 @@ const Home = () => {
 
   const handleLogout = () => {
     navigate("/signup");
-  }
+  };
 
   const handleSubmitPost = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -42,8 +44,8 @@ const Home = () => {
         return;
       }
       await api.post("", { username, title, content });
-      setTitle('');
-      setContent('');
+      setTitle("");
+      setContent("");
     } catch (error) {
       console.error("Error creating post:", error);
     }
@@ -51,15 +53,19 @@ const Home = () => {
 
   return (
     <>
-      <header className="bg-[#7695EC] w-[800px] h-16 flex items-center justify-between px-10 text-white text-2xl font-semibold">
+      <header className="bg-[#7695EC] sm:w-[800px] h-16 flex items-center justify-between px-10 text-white text-2xl font-semibold">
         <h1>CodeLeap Network</h1>
-        <button onClick={() => handleLogout()} className="flex items-center gap-1 cursor-pointer hover:bg-[#6a8be6] p-1.5 rounded-[8px]">
-          <CgLogOut size={24} className="relative top-[2px]"/>
+        <button
+          onClick={() => handleLogout()}
+          className="flex items-center gap-1 cursor-pointer hover:bg-[#6a8be6] p-1.5 rounded-[8px]"
+        >
+          <CgLogOut size={24} className="relative top-[2px]" />
           <h2 className="text-[20px]">{userlogged}</h2>
         </button>
       </header>
-      <main className="flex flex-col justify-center gap-5 p-5 bg-[#ffffff] w-[800px]">
-        <form className="flex flex-col gap-5 border-1 border-[#99999999] rounded-[16px] color w-[752px] h-[334px] p-5 ">
+
+      <main className="flex flex-col justify-center gap-5 p-5 bg-[#ffffff] w-screen sm:w-[800px]">
+        <form className="flex flex-col gap-5 border-1 border-[#99999999] rounded-[16px] color w-full sm:w-[752px] h-[334px] p-5 ">
           <div className="flex justify-start">
             <h2 className="text-black font-bold text-2xl">
               What's on your mind?

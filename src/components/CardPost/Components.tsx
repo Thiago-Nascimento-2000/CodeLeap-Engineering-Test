@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 type ContainerProps = { children: React.ReactNode };
 export const Container = ({ children }: ContainerProps) => {
   return (
-    <div className="border-1 border-[#99999999] rounded-[16px] w-[752px] h-auto">
+    <div className="border-1 border-[#99999999] rounded-[16px] w-full sm:w-[752px] h-auto">
       {children}
     </div>
   );
@@ -25,13 +25,14 @@ export const Header = ({ h2, onClickDelete, onClickEdit }: HeaderProps) => {
           className="inline-block w-[30px] h-[30px] cursor-pointer"
           onClick={onClickDelete}
         />
-        {onClickEdit &&
+        {onClickEdit && (
           <img
-          src="./bx_bx-edit.png"
-          alt="edit icon"
-          className="inline-block w-[30px] h-[30px] cursor-pointer"
-          onClick={onClickEdit}
-        />}
+            src="./bx_bx-edit.png"
+            alt="edit icon"
+            className="inline-block w-[30px] h-[30px] cursor-pointer"
+            onClick={onClickEdit}
+          />
+        )}
       </div>
     </header>
   );

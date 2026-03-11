@@ -11,4 +11,5 @@ body {
   display: flex;
   min-height: 100vh;
   background-color: #DDDDDDDD;
+  overflow-x: hidden;
 }
