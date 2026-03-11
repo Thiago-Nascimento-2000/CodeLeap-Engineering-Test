@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CardPost from "../../components/CardPost/CardPost";
 import api from "../../api/axios";
 import { useSelector } from "react-redux";
@@ -30,7 +30,8 @@ const Home = () => {
         return;
       }
       await api.post("", { username, title, content });
-      console.log("Post created successfully");
+      setTitle('');
+      setContent('');
     } catch (error) {
       console.error("Error creating post:", error);
     }
