@@ -1,7 +1,7 @@
 type WrapperProps = { children: React.ReactNode };
 export const Wrapper = ({ children }: WrapperProps) => {
   return (
-    <div className="w-[100%] h-[100%] bg-[#777777]/80 absolute top-0 left-0">
+    <div className="w-[100%] h-[100%] bg-[#777777]/80 fixed top-0 left-0">
       {children}
     </div>
   );
