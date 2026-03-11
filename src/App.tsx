@@ -12,6 +12,7 @@ function App() {
         # Public Route
         <Route path="/" element={<Navigate to="/signup" />} />
         <Route path="/signup" element={<Sigup />} />
+        <Route path="/home" element={<Home />} />
         <Route
           path="*"
           element={
@@ -27,7 +28,7 @@ function App() {
         />
         # Private Route
         <Route element={<PrivateRoute />}>
-          <Route path="/home" element={<Home />} />
+          
         </Route>
       </Routes>
     </ProviderStore>

@@ -18,19 +18,20 @@ export const Header = ({ h2, onClickDelete, onClickEdit }: HeaderProps) => {
   return (
     <header className="flex items-center justify-between gap-2 p-5 bg-[#7695EC] w-full h-[70px] rounded-t-[15px] text-white text-2xl font-semibold">
       <h2 className="truncate w-[75%] text-left">{h2}</h2>
-      <div>
+      <div className="flex gap-4">
         <img
           src="./ic_baseline-delete-forever.png"
           alt="trash icon"
-          className="inline-block w-[30px] h-[30px] mr-4 cursor-pointer"
+          className="inline-block w-[30px] h-[30px] cursor-pointer"
           onClick={onClickDelete}
         />
-        <img
+        {onClickEdit &&
+          <img
           src="./bx_bx-edit.png"
           alt="edit icon"
           className="inline-block w-[30px] h-[30px] cursor-pointer"
           onClick={onClickEdit}
-        />
+        />}
       </div>
     </header>
   );

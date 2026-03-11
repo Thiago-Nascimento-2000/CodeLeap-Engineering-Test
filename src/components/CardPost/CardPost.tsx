@@ -5,7 +5,7 @@ import { Main } from "./Components";
 import ModalEdit from "../ModalEdit/ModalEdit";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../Redux/store";
-import { openModalEditPost } from "../../Redux/Slices/modalEditPost";
+import { openModalEditPost } from "../../Redux/Slices/modalEditState";
 import formatData from "../../util/formatdata";
 
 type Post = {
@@ -18,6 +18,7 @@ type Post = {
 
 const CardPost = () => {
   const dispatch = useDispatch();
+
   const [posts, setPosts] = useState<Post[]>([]);
 
   const isOpenModal = useSelector(
@@ -37,17 +38,13 @@ const CardPost = () => {
   const handleDeletePost = async (postId: number) => {
     try {
       await api.delete(`${postId}/`);
-
       setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
-
-      console.log("Post deleted successfully");
     } catch (error) {
       console.error("Error deleting post:", error);
     }
   };
 
   const handleEditPost = (post: Post) => {
-    console.log(`Edit post with ID: ${post.id}`);
 
     const url = new URL(window.location.href);
     url.searchParams.set("postId", post.id.toString());
@@ -56,6 +53,16 @@ const CardPost = () => {
     window.history.pushState({}, "", url.toString());
 
     dispatch(openModalEditPost());
+  };
+
+  const isPostOwner = (postUsername: string) => {
+    const urlparms = new URLSearchParams(window.location.search);
+    const username = urlparms.get("username");
+    return postUsername === username;
+  }
+
+  const alertDeletePost = () => {
+    alert("You can only delete your own posts.");
   };
 
   useEffect(() => {
@@ -68,8 +75,8 @@ const CardPost = () => {
         <Card.Container key={post.id}>
           <Card.Header
             h2={post.title}
-            onClickDelete={() => handleDeletePost(post.id)}
-            onClickEdit={() => handleEditPost(post)}
+            onClickDelete={isPostOwner(post.username) ? () => handleDeletePost(post.id) : alertDeletePost}
+            onClickEdit={isPostOwner(post.username) ? () => handleEditPost(post) : undefined}
           ></Card.Header>
           <Main
             username={post.username}

@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import signupUsernameReducer from "./Slices/signupUsername";
-import modalEditPostReducer from "./Slices/modalEditPost";
+import signupUsernameReducer from "./Slices/authUser";
+import modalEditPostReducer from "./Slices/modalEditState";
 
 export const store = configureStore({
     reducer: {

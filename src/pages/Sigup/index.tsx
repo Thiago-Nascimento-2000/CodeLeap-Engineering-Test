@@ -1,6 +1,6 @@
 import type { RootState } from "../../Redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserName } from "../../Redux/Slices/signupUsername";
+import { setUserName } from "../../Redux/Slices/authUser";
 import { useNavigate } from "react-router-dom";
 
 const Sigup = () => {
@@ -12,12 +12,21 @@ const Sigup = () => {
 
   const handleUserNameStateInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setUserName(e.target.value));
-    console.log(userName);
   };
 
   const handleSignIn = () => {
-    console.log(userName);
-    navigate("/home");
+    try {
+      if (!userName) {
+        alert("Please enter a username.");
+        return;
+      }
+      const url = new URL(window.location.href);
+      url.searchParams.set("username", userName);
+      window.history.pushState({}, "", url.toString());
+      navigate(`${'/home' + url.search}`);
+    } catch (error) {
+      console.error("Error signing in:", error);
+    }
   };
 
   return (

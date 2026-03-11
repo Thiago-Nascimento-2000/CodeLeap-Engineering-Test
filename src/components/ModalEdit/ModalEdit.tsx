@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as Card from "./Components";
 import api from "../../api/axios";
 import { useDispatch } from "react-redux";
-import { closeModalEditPost } from "../../Redux/Slices/modalEditPost";
+import { closeModalEditPost } from "../../Redux/Slices/modalEditState";
 
 const ModalEdit = () => {
   const dispatch = useDispatch();
