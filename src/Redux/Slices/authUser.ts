@@ -8,13 +8,18 @@ const initialState: SignupUsernameState = {
     userName: "",
 };
 
+
 const signupUsernameSlice = createSlice({
     name: "signupUsername",
     initialState,
     reducers: {
         setUserName: (state, action: PayloadAction<string>) => {
             state.userName = action.payload;
-        }
+        },
+        clearUserName: (state) => {
+            state.userName = "";
+        },
+
     }
 });
 
