@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../Redux/store";
 import { openModalEditPost } from "../../Redux/Slices/modalEditState";
 import formatData from "../../util/formatdata";
+import ModalDelete from "../ModalDelete/ModalDelete";
+import { openModalDeletePost } from "../../Redux/Slices/modalDeleteStateIsOpen";
 
 type Post = {
   id: number;
@@ -18,12 +20,13 @@ type Post = {
 
 const CardPost = () => {
   const dispatch = useDispatch();
-
   const [posts, setPosts] = useState<Post[]>([]);
 
-  const isOpenModal = useSelector(
+  const isOpenModalEdit = useSelector(
     (state: RootState) => state.modalEditPost.isOpen,
   );
+
+  const isOpenModalDelete = useSelector((state: RootState) => state.modalDeletePostIsOpen.isOpen);
 
   const fetchPosts = async () => {
     try {
@@ -36,12 +39,10 @@ const CardPost = () => {
   };
 
   const handleDeletePost = async (postId: number) => {
-    try {
-      await api.delete(`${postId}/`);
-      setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
-    } catch (error) {
-      console.error("Error deleting post:", error);
-    }
+    const url = new URL(window.location.href);
+    url.searchParams.set("postId", postId.toString());
+    window.history.pushState({}, "", url.toString());
+    dispatch(openModalDeletePost());
   };
 
   const handleEditPost = (post: Post) => {
@@ -85,7 +86,8 @@ const CardPost = () => {
           />
         </Card.Container>
       ))}
-      {isOpenModal && <ModalEdit />}
+      {isOpenModalEdit && <ModalEdit />}
+      {isOpenModalDelete && <ModalDelete/>}
     </>
   );
 };
