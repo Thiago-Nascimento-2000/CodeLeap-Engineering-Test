@@ -74,7 +74,7 @@ const Home = () => {
           <div className="flex justify-end">
             <button
               onClick={(e) => handleSubmitPost(e)}
-              className="w-[120px] h-[32px] bg-[#7695EC] rounded-[8px] font-semibold cursor-pointer hover:bg-[#6589ec]"
+              className={`${!title || !content ? "hover:cursor-not-allowed w-[120px] h-[32px] bg-[#7695EC] rounded-[8px] font-semibold cursor-pointer hover:bg-[#6589ec]" : "w-[120px] h-[32px] bg-[#7695EC] rounded-[8px] font-semibold cursor-pointer hover:bg-[#6589ec]"}`}
             >
               Create
             </button>
