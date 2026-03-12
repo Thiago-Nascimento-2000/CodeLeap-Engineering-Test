@@ -1,30 +1,34 @@
 import { useState } from "react";
 import * as Card from "./Components";
 import api from "../../api/axios";
-import { useDispatch } from "react-redux";
-import { closeModalEditPost } from "../../Redux/Slices/modalEditState";
 
-const ModalEdit = () => {
-  const dispatch = useDispatch();
+type ModalEditProps = {
+  post: {
+    id: number;
+    title: string;
+    content: string;
+  };
+  onClose: () => void;
+  onSaved: (updatedPost: { id: number; title: string; content: string }) => void;
+};
 
-  const params = new URLSearchParams(window.location.search);
-  const postId = params.get("postId");
-  const title = params.get("title");
-  const content = params.get("content");
-
-  const [titleState, setTitleState] = useState(title!);
-  const [contentState, setContentState] = useState(content!);
+const ModalEdit = ({ post, onClose, onSaved }: ModalEditProps) => {
+  const [titleState, setTitleState] = useState(post.title);
+  const [contentState, setContentState] = useState(post.content);
 
   const handleSavePostEdited = async () => {
     try {
-      await api.patch(`${postId}/`, {
+      await api.patch(`${post.id}/`, {
         title: titleState,
         content: contentState,
       });
-      if (await handleSavePostEdited) {
-        dispatch(closeModalEditPost());
-      }
-      await handleSavePostEdited();
+
+      onSaved({
+        id: post.id,
+        title: titleState,
+        content: contentState,
+      });
+      onClose();
     } catch (error) {
       console.error("Error saving edited post:", error);
     }
@@ -55,7 +59,7 @@ const ModalEdit = () => {
           <Card.Button
             text="Cancel"
             type="cancel"
-            onClick={() => dispatch(closeModalEditPost())}
+            onClick={onClose}
           />
           <Card.Button
             text="Save"

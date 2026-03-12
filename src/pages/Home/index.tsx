@@ -6,9 +6,18 @@ import type { RootState } from "../../Redux/store";
 import { CgLogOut } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 
+type Post = {
+  id: number;
+  username: string;
+  title: string;
+  content: string;
+  created_datetime: string;
+};
+
 const Home = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [newCreatedPost, setNewCreatedPost] = useState<Post | null>(null);
 
   const username = useSelector(
     (state: RootState) => state.signupUsername.userName,
@@ -43,7 +52,8 @@ const Home = () => {
         console.error("Title and content are required to create a post.");
         return;
       }
-      await api.post("", { username, title, content });
+      const response = await api.post("", { username, title, content });
+      setNewCreatedPost(response.data);
       setTitle("");
       setContent("");
     } catch (error) {
@@ -104,7 +114,7 @@ const Home = () => {
           </div>
         </form>
 
-        <CardPost />
+        <CardPost newPost={newCreatedPost} />
       </main>
     </>
   );

@@ -27,9 +27,7 @@ function App() {
           }
         />
         # Private Route
-        <Route element={<PrivateRoute />}>
-          
-        </Route>
+        <Route element={<PrivateRoute />}></Route>
       </Routes>
     </ProviderStore>
   );
