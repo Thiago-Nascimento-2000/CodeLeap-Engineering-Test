@@ -62,7 +62,7 @@ const Home = () => {
   };
 
   return (
-    <>
+    <div className="flex flex-col h-full bg-[#ffffff]">
       <header className="bg-[#7695EC] sm:w-[800px] h-16 flex items-center justify-between px-10 text-white text-2xl font-semibold">
         <h1>CodeLeap Network</h1>
         <button
@@ -74,7 +74,7 @@ const Home = () => {
         </button>
       </header>
 
-      <main className="flex flex-col justify-center gap-5 p-5 bg-[#ffffff] w-screen sm:w-[800px]">
+      <main className="flex flex-col justify-center gap-5 p-5 w-screen sm:w-[800px]">
         <form className="flex flex-col gap-5 border-1 border-[#99999999] rounded-[16px] color w-full sm:w-[752px] h-[334px] p-5 ">
           <div className="flex justify-start">
             <h2 className="text-black font-bold text-2xl">
@@ -116,7 +116,7 @@ const Home = () => {
 
         <CardPost newPost={newCreatedPost} />
       </main>
-    </>
+    </div>
   );
 };
 

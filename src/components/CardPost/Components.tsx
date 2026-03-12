@@ -45,18 +45,20 @@ type MainProps = {
 };
 export const Main = ({ username, content, created_datetime }: MainProps) => {
   return (
-    <main className="m-5 flex flex-col">
-      <div className="flex w-full justify-between">
-        <h2 className="text-[#777777] font-semibold text-[18px]">
-          @{username}
-        </h2>
-        <span className="text-[#777777] text-[18px]">{created_datetime}</span>
-      </div>
-      <div className="flex mt-2 text-left">
-        <p className="font-medium text-[18px] text-black w-full whitespace-pre-wrap break-words line-clamp-4">
-          {content}
-        </p>
-      </div>
-    </main>
+    <>
+      <main className="m-5 flex flex-col">
+        <div className="flex w-full justify-between">
+          <h2 className="text-[#777777] font-semibold text-[18px]">
+            @{username}
+          </h2>
+          <span className="text-[#777777] text-[18px]">{created_datetime}</span>
+        </div>
+        <div className="flex mt-2 text-left">
+          <p className="font-medium text-[18px] text-black w-full whitespace-pre-wrap break-words line-clamp-4">
+            {content}
+          </p>
+        </div>
+      </main>
+    </>
   );
 };
