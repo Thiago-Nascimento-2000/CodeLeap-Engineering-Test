@@ -52,7 +52,7 @@ export const Main = ({ username, content, created_datetime }: MainProps) => {
         </h2>
         <span className="text-[#777777] text-[18px]">{created_datetime}</span>
       </div>
-      <div className="flex mt-5 text-left">
+      <div className="flex mt-2 text-left">
         <p className="font-medium text-[18px] text-black w-full whitespace-pre-wrap break-words line-clamp-4">
           {content}
         </p>
